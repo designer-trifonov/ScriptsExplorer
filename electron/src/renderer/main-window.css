@@ -1,0 +1,26 @@
+/* Палитра и базовая типографика — в theme.css (порт ui/theme.py) */
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+#stack {
+  height: 100%;
+}
+
+/*
+ * .screen — порт QStackedWidget-страницы из ui/main_window.py. Стек
+ * реализован через replaceChildren() (main-window.js), поэтому в любой
+ * момент в DOM только один экран — абсолютное позиционирование и
+ * display:none/--active тут не нужны, в отличие от исходного варианта
+ * с CSS-классом screen--active.
+ */
+.screen {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}

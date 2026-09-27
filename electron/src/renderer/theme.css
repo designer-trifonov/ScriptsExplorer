@@ -1,0 +1,174 @@
+/*
+ * Оформление приложения — порт ui/theme.py.
+ * Значения переменных ниже — те же дефолты, что в data/config.py; поверх
+ * них theme.js на старте накатывает реальные цвета из settings.json
+ * (единственный источник правды остаётся в JSON, а не здесь, как и в
+ * Python-версии).
+ */
+:root {
+  --bg: #F5F5F8;
+  --surface: #FFFFFF;
+  --text: #1E1E28;
+  --black: #000000;
+  --accent: #1EA8E6;
+  --accent-hover: #28BEF8;
+  --accent-pressed: #1690C8;
+  --danger: #E05050;
+  --danger-hover: #F06060;
+  --danger-pressed: #C03030;
+  --muted: #8A8C96;
+  --faint: #AAAAAA;
+  --link: #1E6ED6;
+  --border: #DCDCE4;
+  --border-strong: #999999;
+  --border-soft: #C3C6CD;
+  --pill-name: #46BE78;
+  --pill-method: #28A8E0;
+  --pill-incoming: #E05050;
+  --pill-text: #111111;
+  --dep-dot: #E87820;
+  --close: #D83232;
+  --close-hover: #F04040;
+  --close-pressed: #B02020;
+  --scrollbar-bg: #F0F0F4;
+  --scrollbar-handle: #C0C4CC;
+  --badge-orange: #D7781E;
+  --badge-blue: #1E6ED6;
+  --badge-red: #D73232;
+  --badge-dead: #1E1E1E;
+  --badge-white: #FFFFFF;
+}
+
+html, body {
+  background: var(--bg);
+  font-family: "Segoe UI", sans-serif;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* Заголовок хаба */
+.hub-title {
+  font-size: 16.5px;
+  font-weight: 400;
+  color: var(--accent);
+}
+
+.section-label { color: var(--muted); font-size: 10px; }
+.empty-label   { color: var(--faint); font-size: 12px; }
+.card-label    { color: var(--link);  font-size: 11px; }
+
+/* Разделитель */
+.separator {
+  border: none;
+  border-top: 1px solid var(--border);
+  height: 1px;
+}
+
+/* Основная кнопка */
+.btn-primary {
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0 14px;
+  font-size: 10px;
+  height: 24px;
+  cursor: pointer;
+}
+.btn-primary:hover  { background: var(--accent-hover); }
+.btn-primary:active { background: var(--accent-pressed); }
+
+/* Кнопка проекта */
+.btn-project {
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0 14px;
+  text-align: left;
+  font-size: 12px;
+  cursor: pointer;
+}
+.btn-project:hover  { background: var(--accent-hover); }
+.btn-project:active { background: var(--accent-pressed); }
+
+/* Кнопка удалить */
+.btn-remove {
+  background: var(--danger);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 11px;
+  cursor: pointer;
+}
+.btn-remove:hover  { background: var(--danger-hover); }
+.btn-remove:active { background: var(--danger-pressed); }
+
+/* Диалог детали скрипта */
+.detail-frame {
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 12px;
+}
+
+.method-container, .method-scroll {
+  background: var(--surface);
+  border: none;
+}
+
+/* Пилюли — одинаковая высота, шрифт, скругление */
+.pill-name, .pill-method, .pill-incoming {
+  border-radius: 8px;
+  padding: 0 10px;
+  font-size: 9px;
+  font-family: "Segoe UI";
+  color: var(--pill-text);
+  display: inline-flex;
+  align-items: center;
+  height: 16px;
+}
+.pill-name     { background: var(--pill-name); }
+.pill-method   { background: var(--pill-method); }
+.pill-incoming { background: var(--pill-incoming); }
+
+/* Слот скрипта в ленте зависимостей */
+.dep-slot {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+}
+
+/* Кружок зависимостей */
+.dep-dot {
+  background: var(--dep-dot);
+  border-radius: 8px;
+  width: 17px;
+  height: 17px;
+  color: var(--black);
+  font-size: 9px;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Кнопка закрыть */
+.btn-close-circle {
+  background: var(--close);
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+}
+.btn-close-circle:hover  { background: var(--close-hover); }
+.btn-close-circle:active { background: var(--close-pressed); }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-bg);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-handle);
+  border-radius: 3px;
+  min-height: 20px;
+}

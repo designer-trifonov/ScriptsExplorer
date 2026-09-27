@@ -1,0 +1,12 @@
+node_modules/
+__pycache__/
+*.log
+err.txt
+out.txt
+.idea/
+
+# Локальные данные пользователя (не часть кода) — список открытых проектов,
+# настройки темы и сохранённые сессии песочниц по проектам.
+projects.json
+settings.json
+project_configs/

@@ -1,0 +1,241 @@
+/* Стили компонентов (блоки 3-6 чек-листа). Палитра — в theme.css. */
+
+.pill { cursor: default; white-space: nowrap; }
+.pill--clickable { cursor: pointer; }
+
+/* ── marquee_label.py ─────────────────────────────────────────── */
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  height: 16px;
+  text-align: center;
+}
+.marquee__inner {
+  display: inline-block;
+  color: rgb(80, 82, 90);
+  font-size: 9px;
+}
+.marquee--scroll .marquee__inner {
+  animation: marquee-scroll linear infinite;
+  animation-delay: 3.75s;
+}
+@keyframes marquee-scroll {
+  0%, 8%   { transform: translateX(0); }
+  92%, 100% { transform: translateX(var(--marquee-distance, 0)); }
+}
+
+/* ── cards/script_card.py + script_cell_view.py ──────────────────── */
+.script-cell { display: flex; flex-direction: column; align-items: center; cursor: pointer; }
+
+/* ── видимая граница слота внутри песочницы (sandboxController.js) ── */
+.script-slot {
+  box-sizing: border-box;
+  border: 1px solid #2e7d32; /* тонкая, острые углы, зелёная — как на скетче */
+  /* Иконка + подпись центрированы внутри слота, а не прижаты к верхнему
+     левому углу — .script-cell внутри уже сам центрирует иконку и текст
+     друг относительно друга по горизонтали (align-items: center), этот
+     блок довершает центрирование ячейки целиком внутри слота. */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.script-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.script-card__body {
+  position: relative;
+  background: rgb(195, 198, 205);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.script-card__zone {
+  background: rgb(210, 213, 218);
+  color: rgb(100, 105, 118);
+  border-radius: 3px;
+  font-size: 8px;
+  padding: 1px 4px;
+}
+.script-card__badges {
+  position: absolute;
+  top: 3px;
+  right: -3px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.script-card__badge {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  font-size: 6px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.script-card__dead {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--badge-dead);
+  color: var(--badge-white);
+  font-size: 7px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── script_grid.py ───────────────────────────────────────────── */
+.script-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 14px;
+  padding: 10px;
+  overflow-y: auto;
+  height: 100%;
+}
+
+/* ── filter_bar.py ────────────────────────────────────────────── */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 16px;
+  font-size: 11px;
+}
+.filter-bar label { display: flex; align-items: center; gap: 4px; cursor: pointer; white-space: nowrap; }
+.filter-bar .separator--v { width: 1px; height: 16px; border: none; border-left: 1px solid var(--border); }
+
+/* ── project_toolbar.py ───────────────────────────────────────── */
+.project-toolbar { display: flex; align-items: center; gap: 10px; }
+.project-toolbar__spacer { flex: 1; }
+.mode-toggle-btn { width: 28px; height: 24px; font-size: 14px; padding: 0; }
+.btn-primary--checked { outline: 2px solid var(--accent-pressed); outline-offset: -2px; }
+
+/* ── dependency_lane.py ───────────────────────────────────────── */
+.dep-lane {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 10px;
+  overflow: auto;
+  height: 100%;
+}
+.dep-slot { width: 140px; padding: 10px 8px; display: flex; flex-direction: column; gap: 6px; cursor: pointer; }
+.dep-slot__row { display: flex; justify-content: center; }
+.dep-slot__section { display: flex; flex-direction: column; gap: 4px; align-items: center; }
+
+/* ── connection_popup.py ─────────────────────────────────────── */
+.connection-popup {
+  position: fixed;
+  z-index: 1000;
+  background: rgba(35, 35, 40, 0.92);
+  border-radius: 10px;
+  padding: 8px 10px;
+  pointer-events: none;
+}
+.connection-popup__row { display: flex; align-items: center; gap: 4px; font-size: 9px; color: white; white-space: nowrap; }
+.connection-popup__arrow { width: 20px; text-align: center; font-weight: 900; font-size: 14px; }
+
+/* ── base_dialog.py ───────────────────────────────────────────── */
+.dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 500;
+}
+.dialog-frame {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 12px;
+  overflow: hidden;
+  user-select: none;
+}
+.dialog-frame__close {
+  position: absolute;
+  top: 8px;
+  right: 6px;
+  width: 14px;
+  height: 14px;
+}
+
+/* ── summary_dialog.py / script_detail.py ────────────────────────── */
+.summary-header, .detail-name-row { display: flex; justify-content: center; }
+.summary-list, .detail-methods { overflow-y: auto; padding: 20px; height: 100%; box-sizing: border-box; }
+.summary-item { margin-bottom: 10px; }
+.summary-item__name { font-weight: bold; font-size: 12px; margin-bottom: 4px; }
+.summary-item__row { display: flex; align-items: center; gap: 8px; padding-left: 12px; font-size: 11px; margin-bottom: 3px; }
+.summary-badge {
+  width: 17px; height: 17px; border-radius: 8px; color: white;
+  font-size: 8px; font-weight: bold; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.summary-bottom { display: flex; padding: 12px 20px; border-top: 1px solid var(--border); }
+
+.detail-method-row { display: flex; align-items: center; gap: 4px; padding: 2px 0; }
+.detail-dot {
+  width: 17px; height: 17px; border-radius: 8px; color: black;
+  font-size: 7px; display: flex; align-items: center; justify-content: center; cursor: default;
+}
+
+/* ── sandbox_canvas.py / sandbox_box_view.py ─────────────────────── */
+.sandbox-canvas {
+  /* Ровно один корень — всегда заполняет собой всю доступную площадь,
+     БЕЗ своего отдельного padding: левый край песочницы обязан совпадать
+     с "Назад" и с кнопкой "Создать песочницу" — единственный источник
+     отступа слева/справа/сверху — padding самого .screen (projectView.js). */
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.sandbox-box {
+  /* Та же толщина линии, что и у .script-slot (1px) — песочница читается
+     как обычный слот сетки, только со скруглёнными углами и своим цветом. */
+  border: 1px solid;
+  border-radius: 10px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+/* Корень (draggable:false) не двигается — обычный курсор, не "move". */
+.sandbox-box[data-draggable="true"] {
+  cursor: move;
+}
+/* Активная песочница (цель для "+ Создать песочницу") — та же толщина 1px,
+   что и обычная рамка, но нарисована ВНУТРЬ (inset box-shadow, а не outline)
+   — не меняет border-color (цвет самой песочницы) и не выходит за пределы
+   box'а, так что общий размер остаётся строго равен ячейке сетки. */
+.sandbox-box--active {
+  box-shadow: inset 0 0 0 1px #ffffff;
+}
+.sandbox-box__title {
+  position: absolute;
+  top: 3px;
+  left: 10px;
+  font-size: 8px;
+  font-weight: bold;
+  font-family: "Segoe UI";
+  background: transparent;
+  pointer-events: none;
+}
+.sandbox-box__content {
+  position: absolute;
+  left: 0;
+  top: 0; /* заголовок наложен поверх, а не выше — отступ до первого элемента = SANDBOX_MARGIN, как и с остальных трёх сторон */
+  /* Никогда не обрезаем содержимое — песочница обязана подрасти под него
+     (см. requiredSize в sandboxController.js), а не прятать лишнее. */
+  overflow: visible;
+}
